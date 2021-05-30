@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap" rel="stylesheet">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script> <!-- add p5 library -->
+  
+  <script src="background.js"></script> 
+
+  <div id="nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="page-1.html">Letters</a></li>
+      <li><a href="submit.html">Submit</a></li>
+    </ul>
+  </div>
+
+<!--   <div class="grid-container">
+    <div class="grid-item">1</div>
+    <div class="grid-item">2</div>
+    <div class="grid-item">3</div>
+    <div class="grid-item">4</div>
+    <div class="grid-item">5</div>
+    <div class="grid-item">6</div>
+    <div class="grid-item">7</div>
+    <div class="grid-item">8</div>
+    <div class="grid-item">9</div>
+  </div> -->
+  
+<!-- https://www.youtube.com/watch?v=jOau1X5SKDE -->
+  <body>
+    <table id ="pageletter">
+      <thead>
+        <th>Letters</th>
+      </thead>
+      <tbody id="tbody1">
+       
+      
+      </tbody>
+      
+      
+    </table>
+    
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase.js"></script>
+
+    <script id="MainScript">
+      var firebaseConfig = {
+        apiKey: "AIzaSyBr5GgO4QBP9liJWRB-QFW9TyuVFY7b3Hk",
+        authDomain: "proj3-fbaa3.firebaseapp.com",
+        projectId: "proj3-fbaa3",
+        storageBucket: "proj3-fbaa3.appspot.com",
+        messagingSenderId: "213978746353",
+        appId: "1:213978746353:web:b4c0bde611d001e9468850"
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      function SelectAllData() {
+        firebase
+          .database()
+          .ref("Letters")
+          .on("value", function(AllRecords) {
+            AllRecords.forEach(function(CurrentRecord) {
+              var submit = CurrentRecord.val().Letter;
+              AddItemsToTable(submit);
+            });
+          });
+      }
+
+      window.onload = SelectAllData;
+    
+    var letterNo=0  
+    function AddItemsToTable(submit){
+      var tbody=document.getElementById('tbody1');
+      var trow = document.createElement('tr');
+      var td1 = document.createElement('td');
+       var td2 = document.createElement('td');
+      td1.innerHTML=++letterNo;
+      td2.innerHTML= submit
+      trow.appendChild(td1);trow.appendChild(td2);
+      tbody.appendChild(trow);
+    }
+    </script>
+  </body>
+</html>
+
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase.js"></script>
+<script src="java.js"></script>
